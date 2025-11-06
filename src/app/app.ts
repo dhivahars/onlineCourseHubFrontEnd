@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Login } from './modules/auth/login/login';
+import { InputField } from './shared/input-field/input-field';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,Login],
+  imports: [RouterOutlet,InputField],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
