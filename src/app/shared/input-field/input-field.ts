@@ -3,6 +3,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'we-input',
+  standalone:true,
   imports: [ReactiveFormsModule],
   templateUrl: './input-field.html',
   styleUrl: './input-field.scss',

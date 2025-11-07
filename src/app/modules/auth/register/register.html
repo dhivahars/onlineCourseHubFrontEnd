@@ -1,1 +1,36 @@
-<p>register works!</p>
+<form >
+  <div class="reg-form">
+    <we-input
+      label="Username:"
+      type="text"
+      placeholder="Enter your name"
+      id="username"
+      formControlName="name"
+    />
+    <we-input
+      label="Email:"
+      type="text"
+      placeholder="Enter your email"
+      id="email"
+      formControlName="email"
+    />
+    <we-input
+      label="Password:"
+      type="password"
+      placeholder="Enter your password"
+      id="password"
+      formControlName="password"
+    />
+    <we-input
+      label="Confirm Password:"
+      type="password"
+      placeholder="Confirm your password"
+      id="confirmpassword"
+      formControlName="confirmpassword"
+    />
+    <div class="btn">
+      <we-button label="Register" type="primary"></we-button>
+    </div>
+  </div>
+</form>
+
