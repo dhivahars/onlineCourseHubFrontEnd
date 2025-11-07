@@ -1,43 +1,46 @@
-<div class="container">
+<body>
+    <div class="container">
+    <div>LogIn</div>
  <form [formGroup]="login" (ngSubmit)="onSubmit()">
     <!-- email --> 
      <div class="fields">
+        <div>
         <we-input
-        label="email"
+        label="Email"
          type="text" 
          id="email"
          placeholder="Enter your email"
-         formControlName="email"></we-input>
-         <!-- @if(f['email']?.invalid && (f['email']?.dirty || f['email']?.touched)){
+         formControlName="email"/></div>
+         @if(f['email']?.invalid && (f['email']?.dirty || f['email']?.touched)){
          <div class="error">
             @if(f['email']?.errors?.['required']){
                 <div>Email is required</div>
             }
          </div>
-         } -->
+         }
     </div>
     <!-- password -->
     <div class="fields">
+    <div>
         <we-input
-        label="password"
+        label="Password"
          type="password" 
          id="password"
          placeholder="Enter your password"
-         formControlName="password"/>
-          <!-- @if(f['password']?.invalid && (f['password']?.dirty || f['password']?.touched)){
+         formControlName="password"/></div>
+          @if(f['password']?.invalid && (f['password']?.dirty || f['password']?.touched)){
          <div class="error">
-            @if(f['password']?.errors?.['password']){
-                <div>password is required</div>
+            @if(f['password']?.errors?.['required']){
+                <div>Email is required</div>
             }
          </div>
-         } -->
+         }
     </div>
-    <div>
+    <div class="btn">
         <we-button
         label="Login"
-        type="submit"
-        class="primary"
         />
     </div>
  </form>
 </div> 
+</body>

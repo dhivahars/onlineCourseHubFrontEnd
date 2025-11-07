@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Button } from '../../../shared/button/button';
 import { InputField } from '../../../shared/input-field/input-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [Button,InputField,ReactiveFormsModule],
+  imports: [Button,InputField,ReactiveFormsModule,CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -23,7 +24,11 @@ ngOnInit(): void {
 get f(){
   return this.login.controls;
 }
-onSubmit():void{
-
-}
+onSubmit(): void {
+    if (this.login.invalid) {
+      this.login.markAllAsTouched();
+      return;
+    }
+    console.log(this.login.value);
+  }
 }

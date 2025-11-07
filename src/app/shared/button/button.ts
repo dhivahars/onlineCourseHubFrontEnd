@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class Button {
   @Input({required:true}) label!:string;
-  @Input() type:string='primary';
+  @Input() type:'primary' | 'secondary' | 'danger' ='primary';
   @Input() disabled:boolean=false;
 
   @Output() onClick=new EventEmitter<void>();
