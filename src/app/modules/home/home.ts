@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { InputField } from '../../shared/input-field/input-field';
 import { Button } from '../../shared/button/button';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,7 @@ isLogged():boolean{
   return !localStorage.getItem('token')
 }
   openSignup() {
-    this.route.navigate(['/register']);
+    this.router.navigate(['/app-register']);
   }
 
 }
