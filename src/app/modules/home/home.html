@@ -6,13 +6,17 @@
       A modern learning platform where you learn through real projects, guided lessons, and support
       from expert mentors.
     </p>
-
+    @if(isLogged()){
     <div class="button">
-      <div class="btn"><we-button label="Login" variant="primary"></we-button></div>
+      <div class="btn"><we-button label="Login" variant="primary" (click)="onLogClick()"></we-button></div>
       <div class="btn"><we-button label="Sign up" variant="secondary" class="sign-btn"></we-button></div>
-    </div>
+    </div>}
   </div>
   <div class="image">
     <img src="assets/images/img3.png" alt="Home" />
   </div>
 </div>
+@if(!isLogged()){
+<div class="contents">
+      content
+</div>}

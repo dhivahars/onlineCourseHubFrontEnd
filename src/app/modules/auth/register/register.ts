@@ -17,6 +17,6 @@ export class Register implements OnInit {
       username:['']
     })
   }
-
+onRegister(){}
 
 }
