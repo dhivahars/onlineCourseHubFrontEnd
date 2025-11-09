@@ -1,22 +1,78 @@
 import { Component, OnInit } from '@angular/core';
 import { InputField } from '../../../shared/input-field/input-field';
 import { Button } from '../../../shared/button/button';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-register',
-  imports: [InputField,Button],
+  standalone: true,
+  imports: [InputField,Button,ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    MatChipsModule,
+    MatAutocompleteModule],
   templateUrl: './register.html',
-  styleUrl: './register.scss',
+  styleUrls: ['./register.scss'],
 })
 export class Register implements OnInit {
-  registerDetails!:FormGroup
-  constructor(public rd:FormBuilder){}
-  ngOnInit(): void {
-    this.registerDetails=this.rd.group({
-      username:['']
-    })
+  signup!: FormGroup;
+skillsList:string[]= ['Angular', 'React', 'Node.js', 'Python', 'Java', 'SQL', 'Spring Boot'];
+
+constructor(private sb: FormBuilder,private route:Router) {}
+
+ngOnInit(): void {
+  this.signup = this.sb.group({
+    username:['',[Validators.required,Validators.pattern('^[A-Za-z ]{4,10}$')]],
+    email:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9](\.?[a-zA-Z0-9_-])*@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$')]],
+    password: ['', [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]],
+    confirmpassword:['',Validators.required],
+    role:['',Validators.required],
+    skills:[[],Validators.required]
+  },{validators:this.passwordValidator});
+  
+}
+passwordValidator(pv:FormGroup){
+  const password=pv.get('password')?.value;
+  const confirmpassword=pv.get('confirmpassword')?.value;
+  if(password && confirmpassword && password!==confirmpassword)
+  {
+    pv.get('confirmpassword')?.setErrors({mismatch:true})
   }
-onRegister(){}
+  else
+  {
+    pv.get('confirmpassword')?.setErrors(null);
+  }
+
+}
+get r(){
+  return this.signup.controls;
+}
+close()
+{
+  this.route.navigate(['/'])
+}
+toLogin()
+{
+  this.route.navigate(['/login'])
+}
+onSubmit(): void {
+    if (this.signup.invalid) {
+      this.signup.markAllAsTouched();
+      return;
+    }
+    console.log(this.signup.value);
+  }
+  
 
 }
