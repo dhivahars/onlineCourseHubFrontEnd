@@ -1,6 +1,7 @@
 <body>
     <div class="container">
-    <div>LogIn</div>
+    <div class="title">Log in or create account</div>
+
  <form [formGroup]="login" (ngSubmit)="onSubmit()">
     <!-- email --> 
      <div class="fields">
@@ -9,9 +10,9 @@
         label="Email"
          type="text" 
          id="email"
-         placeholder="Enter your email"
+         placeholder="example@gamil.com"
          formControlName="email"/></div>
-         @if(f['email']?.invalid && (f['email']?.dirty || f['email']?.touched)){
+         @if(f['email']?.invalid &&  f['email']?.touched){
          <div class="error">
             @if(f['email']?.errors?.['required']){
                 <div>Email is required</div>
@@ -24,17 +25,21 @@
     <div>
         <we-input
         label="Password"
-         type="password" 
+         [type]="passType" 
          id="password"
-         placeholder="Enter your password"
+         placeholder="Password@123"
          formControlName="password"/></div>
-          @if(f['password']?.invalid && (f['password']?.dirty || f['password']?.touched)){
+          @if(f['password']?.invalid &&  f['password']?.touched){
          <div class="error">
             @if(f['password']?.errors?.['required']){
                 <div>Password is required</div>
             }
          </div>
          }
+    </div>
+    <div class="info">
+        <button type="button" (click)="onShowPassword()" class="showPass">ShowPassword</button>
+        <div><span>doesn't have an account?</span><button type="button" routerLink="/app-register" class="showPass">SignUp</button></div>
     </div>
     <div class="btn">
         <we-button

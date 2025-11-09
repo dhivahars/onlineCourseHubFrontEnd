@@ -33,11 +33,12 @@ button{
         }
     }
      &.danger{
-        background:orangered;
-        color:white;
+        background:white;
+        color:orangered;
+        border:0.0625rem solid orangered;
         &:hover:not(:disabled)
         {
-            background: rgb(214, 69, 16);
+            background: #fff6f0;
         }
     }
     &:disabled {

@@ -1,0 +1,78 @@
+<div class="dashboard">
+  <!-- Top Navbar -->
+  <header class="top-nav">
+    <div class="logo">WeCourse
+    </div>
+    <nav>
+      <!-- Home Button -->
+<button class="btn primary" (click)="onNavigate('/app-home')">
+  <span class="material-symbols-outlined">home</span>
+  Home
+</button>
+
+<!-- Profile Button (current page) -->
+<button class="btn primary" >
+  <span class="material-symbols-outlined">person</span>
+  Profile
+</button>
+
+<!-- My Courses Button -->
+<button class="btn primary" (click)="onNavigate('/app-my-courses')">
+  <span class="material-symbols-outlined">menu_book</span>
+  My Courses
+</button>
+
+
+      <we-button label="Sign Out" variant="danger" (onClick)="onSignOut()">
+        <span class="material-symbols-outlined">logout</span>
+      </we-button>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content">
+    <section class="profile-section" *ngIf="student; else loading">
+      <h1>Welcome, {{ student.name }}</h1>
+      <p><strong>Email:</strong> {{ student.email }}</p>
+      <p><strong>Joined On:</strong> {{ student.registrationDate | date:'dd MMM yyyy' }}</p>
+
+      <!-- Skills -->
+      <div class="skills" *ngIf="student.skills?.length; else noSkills">
+        <h3>Skills</h3>
+        <div class="skill-list">
+          <span *ngFor="let skill of student.skills">{{ skill }}</span>
+        </div>
+      </div>
+
+      <ng-template #noSkills>
+        <p class="no-skill">No skills added yet.</p>
+      </ng-template>
+
+    </section>
+
+    <ng-template #loading>
+      <p class="loading">Loading your dashboard...</p>
+    </ng-template>
+  
+  <section class="enrollments">
+     <!-- Enrolled Courses -->
+      <div class="courses">
+  <h3>Enrolled Courses</h3>
+  <div >
+    <div class="course-card" >
+      <h4>{{ enrollments?.courseTitle }}</h4>
+      <span [ngClass]="enrollments?.status === 'COMPLETED' ? 'completed' : enrollments?.status === 'IN_PROGRESS'?'progress':'halfway'">
+  {{ enrollments?.status === 'COMPLETED' ? 'Completed' : enrollments?.status === 'IN_PROGRESS'?'In progress':'Halfway' }}
+</span>
+
+      <p>Progress: {{ enrollments?.progressPercentage }}%</p>
+    </div>
+  </div>
+</div>
+<ng-template #noCourses>
+        <p class="no-course">You haven’t enrolled in any courses yet.</p>
+      </ng-template>
+  </section>
+</main>
+</div>
+
