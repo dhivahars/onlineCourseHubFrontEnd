@@ -12,7 +12,7 @@ import { Router, RouterOutlet } from '@angular/router';
 export class Home {
   constructor(private route:Router){}
   openSignup() {
-    this.route.navigate(['/signup']);
+    this.route.navigate(['/register']);
   }
 
 }
