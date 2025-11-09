@@ -9,10 +9,18 @@
 
     <div class="button">
       <div class="btn"><we-button label="Login" variant="primary"></we-button></div>
-      <div class="btn"><we-button label="Sign up" variant="secondary" class="sign-btn"></we-button></div>
+      <div class="btn">
+        <we-button
+          label="Sign up"
+          variant="secondary"
+          class="sign-btn"
+          (click)="openSignup()"
+        ></we-button>
+      </div>
     </div>
   </div>
   <div class="image">
     <img src="assets/images/img3.png" alt="Home" />
   </div>
 </div>
+<router-outlet></router-outlet>
