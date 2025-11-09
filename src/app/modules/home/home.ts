@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [Button,RouterOutlet],
+  imports: [Button],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
@@ -18,7 +18,7 @@ isLogged():boolean{
   return !localStorage.getItem('token')
 }
   openSignup() {
-    this.route.navigate(['/register']);
+    this.router.navigate(['/register']);
   }
 
 }
