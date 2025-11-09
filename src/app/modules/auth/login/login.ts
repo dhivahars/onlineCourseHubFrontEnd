@@ -25,6 +25,7 @@ ngOnInit(): void {
     email: ['', Validators.required],
     password: ['', Validators.required]
   });
+  // this.isLogged()? 'login page':this.router.navigate(['']) 
 }
 get f(){
   return this.login.controls;
@@ -58,6 +59,9 @@ onSubmit(): void {
     }
   });
   }
+  isLogged():boolean{
+  return !localStorage.getItem('token')
+}
 onShowPassword(){
   this.passType= this.passType=='password'?'text':'password';
 }

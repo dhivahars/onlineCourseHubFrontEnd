@@ -64,15 +64,14 @@ close()
 }
 toLogin()
 {
-  this.route.navigate(['/login'])
+  this.route.navigate(['/app-login'])
 }
 onSubmit(): void {
     if (this.signup.invalid) {
       this.signup.markAllAsTouched();
       return;
     }
+    this.route.navigate(['/app-login'])
     console.log(this.signup.value);
   }
-  
-
 }
