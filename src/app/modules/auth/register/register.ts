@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InputField } from '../../../shared/input-field/input-field';
 import { Button } from '../../../shared/button/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,54 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './register.html',
   styleUrls: ['./register.scss'],
 })
-export class Register {
+export class Register implements OnInit {
+  signup!: FormGroup;
+skillsList:string[]= ['Angular', 'React', 'Node.js', 'Python', 'Java', 'SQL', 'Spring Boot'];
+
+constructor(private sb: FormBuilder,private route:Router) {}
+
+ngOnInit(): void {
+  this.signup = this.sb.group({
+    username:['',[Validators.required,Validators.pattern('^[A-Za-z ]{4,10}$')]],
+    email:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9](\.?[a-zA-Z0-9_-])*@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$')]],
+    password: ['', [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]],
+    confirmpassword:['',Validators.required],
+    role:['',Validators.required],
+    skills:[[],Validators.required]
+  },{validators:this.passwordValidator});
+  
+}
+passwordValidator(pv:FormGroup){
+  const password=pv.get('password')?.value;
+  const confirmpassword=pv.get('confirmpassword')?.value;
+  if(password && confirmpassword && password!==confirmpassword)
+  {
+    pv.get('confirmpassword')?.setErrors({mismatch:true})
+  }
+  else
+  {
+    pv.get('confirmpassword')?.setErrors(null);
+  }
+
+}
+get r(){
+  return this.signup.controls;
+}
+close()
+{
+  this.route.navigate(['/'])
+}
+toLogin()
+{
+  this.route.navigate(['/login'])
+}
+onSubmit(): void {
+    if (this.signup.invalid) {
+      this.signup.markAllAsTouched();
+      return;
+    }
+    console.log(this.signup.value);
+  }
   
 
 }
