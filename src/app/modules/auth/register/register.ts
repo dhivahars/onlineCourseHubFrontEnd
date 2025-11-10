@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { AuthService } from '../../../services/auth-service';
 
 @Component({
   selector: 'app-register',
@@ -29,11 +30,11 @@ export class Register implements OnInit {
   signup!: FormGroup;
 skillsList:string[]= ['Angular', 'React', 'Node.js', 'Python', 'Java', 'SQL', 'Spring Boot'];
 
-constructor(private sb: FormBuilder,private route:Router) {}
+constructor(private sb: FormBuilder,private route:Router,private auth:AuthService) {}
 
 ngOnInit(): void {
   this.signup = this.sb.group({
-    username:['',[Validators.required,Validators.pattern('^[A-Za-z ]{4,10}$')]],
+    name:['',[Validators.required,Validators.pattern('^[A-Za-z ]{4,10}$')]],
     email:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9](\.?[a-zA-Z0-9_-])*@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$')]],
     password: ['', [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]],
     confirmpassword:['',Validators.required],
@@ -71,7 +72,17 @@ onSubmit(): void {
       this.signup.markAllAsTouched();
       return;
     }
-    this.route.navigate(['/app-login'])
-    console.log(this.signup.value);
+    // this.route.navigate(['/app-login'])
+    // console.log(this.signup.value);
+
+  this.auth.onRegister(this.signup.value).subscribe({
+    next: (res: any) => {
+      console.log('Registration successful:', res);
+      this.route.navigate(['/app-login']); // Navigate to login
+    },
+    error: (err) => {
+      console.error('Registration failed:', err);
+    }
+  });
   }
 }

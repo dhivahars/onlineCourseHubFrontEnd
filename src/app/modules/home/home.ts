@@ -5,7 +5,7 @@ import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [Button,RouterOutlet],
+  imports: [Button],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
