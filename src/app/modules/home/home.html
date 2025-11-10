@@ -6,7 +6,6 @@
       A modern learning platform where you learn through real projects, guided lessons, and support
       from expert mentors.
     </p>
-    @if(isLogged()){
     <div class="button">
      <div class="btn"><we-button label="Login" variant="primary" (click)="onLogClick()"></we-button></div>
 
@@ -18,14 +17,9 @@
           (click)="openSignup()"
         ></we-button>
       </div>
-    </div>    }
+    </div>    
   </div>
    <div class="image">
     <img src="assets/images/img3.png" alt="Home" />
   </div>
-@if(!isLogged()){
-<div class="contents">
-      content
-</div>
-}
 </div>
