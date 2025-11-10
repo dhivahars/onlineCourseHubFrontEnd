@@ -34,7 +34,6 @@
     <section class="profile-section" *ngIf="student; else loading">
       <h1>Welcome, {{ student.name }}</h1>
       <p><strong>Email:</strong> {{ student.email }}</p>
-      <p><strong>Joined On:</strong> {{ student.registrationDate | date:'dd MMM yyyy' }}</p>
 
       <!-- Skills -->
       <div class="skills" *ngIf="student.skills?.length; else noSkills">
