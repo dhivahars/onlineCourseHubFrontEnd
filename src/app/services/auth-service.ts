@@ -49,10 +49,6 @@ getUser(): Observable<any> {
     });
   });
 }
-
-
-
-
   clearUserCache() {
     this.cachedUser = null;
   }
