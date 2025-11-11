@@ -11,9 +11,15 @@
 </button>
 
 <!-- Profile Button (current page) -->
-<button class="btn primary" (click)="onNavigate('/student-profile')">
+<button class="btn primary" >
   <span class="material-symbols-outlined">person</span>
   Profile
+</button>
+
+<!-- My Courses Button -->
+<button class="btn primary" (click)="onNavigate('/app-my-courses')">
+  <span class="material-symbols-outlined">menu_book</span>
+  My Courses
 </button>
 
 
@@ -46,36 +52,26 @@
     <ng-template #loading>
       <p class="loading">Loading your dashboard...</p>
     </ng-template>
-  @if(enrollments){
-   
+  
   <section class="enrollments">
      <!-- Enrolled Courses -->
       <div class="courses">
   <h3>Enrolled Courses</h3>
- @for (enrollment of enrollments; track enrollment.id) {
   <div >
     <div class="course-card" >
-      <h4>{{ enrollment?.courseTitle }}</h4>
-       <span 
-      [ngClass]="
-        enrollment.status === 'COMPLETED'
-          ? 'completed'
-          : enrollment.status === 'IN_PROGRESS'
-          ? 'progress'
-          : 'halfway'
-      ">
-      {{ enrollment.status === 'COMPLETED'
-        ? 'Completed'
-        : enrollment.status === 'IN_PROGRESS'
-        ? 'In progress'
-        : 'Halfway' }}
-    </span>
+      <h4>{{ enrollments?.courseTitle }}</h4>
+      <span [ngClass]="enrollments?.status === 'COMPLETED' ? 'completed' : enrollments?.status === 'IN_PROGRESS'?'progress':'halfway'">
+  {{ enrollments?.status === 'COMPLETED' ? 'Completed' : enrollments?.status === 'IN_PROGRESS'?'In progress':'Halfway' }}
+</span>
 
-      <p>Progress: {{ enrollment?.progressPercentage }}%</p>
+      <p>Progress: {{ enrollments?.progressPercentage }}%</p>
     </div>
-  </div>}
+  </div>
 </div>
-  </section>}
+<ng-template #noCourses>
+        <p class="no-course">You haven’t enrolled in any courses yet.</p>
+      </ng-template>
+  </section>
 </main>
 </div>
 

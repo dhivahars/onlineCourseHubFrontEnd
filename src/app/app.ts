@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, signal } from '@angular/core';
+import { Component, OnDestroy, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Footer } from './shared/footer/footer';
 
@@ -8,11 +8,9 @@ import { Footer } from './shared/footer/footer';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
+export class App implements OnDestroy{
   protected readonly title = signal('OnlineCourseHub');
-  @HostListener('window:beforeunload', ['$event'])
-  unloadHandler(event: Event) {
-    localStorage.removeItem('token');
-    localStorage.removeItem('email')
+  ngOnDestroy(): void {
+    localStorage.clear();
   }
 }
