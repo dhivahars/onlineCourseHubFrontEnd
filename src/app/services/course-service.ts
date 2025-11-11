@@ -15,7 +15,18 @@ export class CourseService{
     const token = this.authService.getToken();
     return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }
-
+   getCoursesByMentor(mentorId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/mentor/${mentorId}`, {
+      headers: this.getHeaders(),
+    });
+  }
+ 
+  /** 👩‍🎓 Get students enrolled under this mentor */
+  getStudentsUnderMentor(mentorId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/mentor/${mentorId}/students`, {
+      headers: this.getHeaders(),
+    });
+  }
   // Get all courses
   getCourses(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/list`, { headers: this.getHeaders() });
