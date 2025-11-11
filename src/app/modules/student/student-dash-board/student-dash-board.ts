@@ -17,25 +17,22 @@ import { Home } from '../../home/home';
 export class StudentDashBoard implements OnInit {
   student: any;
   enrollments: any;
-  email:any;
 
   constructor(private auth: AuthService, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.email=localStorage.getItem('email')
     this.auth.getUser().subscribe({
       next: (user) => {
         this.student = user;
         console.log('Student loaded:', this.student);
         if (this.student && this.student.id) {
           const token = localStorage.getItem('token');
-         
           const headers = new HttpHeaders({
             Authorization: `Bearer ${token}`,
           });
 
           this.http
-            .get(`http://localhost:8080/enroll/search/${this.email}`, { headers })
+            .get(`http://localhost:8080/enrollment/search/${this.student.id}`, { headers })
             .subscribe({
               next: (enrollments) => {
                 this.enrollments = enrollments;

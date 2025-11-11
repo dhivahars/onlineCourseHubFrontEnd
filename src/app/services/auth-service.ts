@@ -49,24 +49,6 @@ getUser(): Observable<any> {
     });
   });
 }
-getStudentId(){
-  
-}
-
-
-isLoggedIn(): boolean {
-    const token = localStorage.getItem('token');
-    return !!token; // true if token exists
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem('token');
-  }
-
-  logout(): void {
-    localStorage.removeItem('token');
-  }
-
   clearUserCache() {
     this.cachedUser = null;
   }

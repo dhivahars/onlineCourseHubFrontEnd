@@ -1,51 +1,19 @@
-import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {  Router, RouterLink } from '@angular/router';
-import { CourseService } from '../../services/course-service';
 
 @Component({
   selector: 'app-courselist',
-  standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [],
   templateUrl: './courselist.html',
   styleUrl: './courselist.scss',
 })
-export class Courselist implements OnInit {
-  courses: any[]=[]
-  loading = true;
-  errorMessage = '';
-
-  constructor(
-    private courseService: CourseService,
-    private router: Router
-  ) {}
-
+export class Courselist implements OnInit{
+  courses!:any;
+  baseUrl:string="http://localhost:8080/courses"
+  constructor(private http:HttpClient){}
   ngOnInit(): void {
-    this.loadCourses();
-  }
-
-  loadCourses(): void {
-    this.courseService.getCourses().subscribe({
-      next: (data) => {
-        this.courses = data || []; 
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Error fetching courses', err);
-        this.errorMessage = 'Failed to load courses. Please try again later.';
-        this.loading = false;
-      },
-    });
-  }
-
-  viewDetails(courseId?: number): void {
-    if (courseId != null) {
-      this.router.navigate(['/app-course', courseId]);
-    }
-  }
-
-  trackByCourseId(index: number, course: any): number {
-    return course?.id ?? index; 
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    this.courses=this.http.get(`${this.baseUrl}/list`,{headers})
   }
 }

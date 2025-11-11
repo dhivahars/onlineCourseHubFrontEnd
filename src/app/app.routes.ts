@@ -5,8 +5,6 @@ import { mentorDashboard } from './modules/mentor/mentor-dashboard/mentor-dashbo
 import { StudentDashBoard } from './modules/student/student-dash-board/student-dash-board';
 import { Register } from './modules/auth/register/register';
 import { MyCourses } from './modules/student/my-courses/my-courses';
-import { Course } from './modules/course/course';
-import { StudentProfile } from './modules/student/profile/profile';
 
 export const routes: Routes = [{
     path: '',
@@ -36,11 +34,4 @@ export const routes: Routes = [{
 {
     path:'app-my-courses',
     component:MyCourses
-},{
-  path:'app-course/:id',
-  component:Course
-},
-{
-  path:'student-profile',
-  component:StudentProfile
 }];
