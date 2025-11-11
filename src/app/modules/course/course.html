@@ -1,0 +1,27 @@
+
+<div class="course-details-container" *ngIf="loading">
+  <p class="noData">Loading course details...</p>
+</div>
+
+<div *ngIf="!loading && course; else errorTemplate" class="course-details">
+  <h2>{{ course.title }}</h2>
+  <p>{{ course.description }}</p>
+  <p><strong>Mentor:</strong> {{ course.mentorName?.name }}</p>
+  <p><strong>Capacity:</strong> {{ course.capacity }}</p>
+   <div class="btn">
+    <div >
+        <we-button
+          label="Enroll"
+          variant="primary"
+          class="enroll-btn"
+          (click)="onEnroll()"
+        ></we-button>
+    
+    </div>
+    </div>
+</div>
+
+<ng-template #errorTemplate>
+  <p class="noData">{{ errorMessage }}</p>
+  <button class="back-btn" (click)="goBack()">Back to Courses</button>
+</ng-template>
