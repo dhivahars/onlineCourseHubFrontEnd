@@ -1,6 +1,25 @@
-<main>
-    <div><img src="{{courses.url}}" alt="thumbnail"></div>
-    <div>{{courses.title}}</div>
-    <div>{{courses.description}}</div>
-    <div>{{courses.capacity}}</div>
-</main>
+<div class="container">
+  <h2>Available Courses</h2>
+
+  <div *ngIf="loading">
+    <p class="noData">Loading courses...</p>
+  </div>
+
+  <div *ngIf="!loading && courses.length > 0; else noData" class="courses-grid">
+    <div *ngFor="let course of courses; trackBy: trackByCourseId" class="course-card">
+      <div class="course-content">
+        <h3>{{ course.title }}</h3>
+        <p class="description">{{ course.description }}</p>
+        <div class="meta">
+          <p><strong>Mentor:</strong> {{ course.mentorName?.name }}</p>
+          <p><strong>Capacity:</strong> {{ course.capacity }}</p>
+        </div>
+      </div>
+      <button class="enroll-btn" (click)="viewDetails(course.id)">View Details</button>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <p class="noData">No courses available right now.</p>
+  </ng-template>
+</div>
