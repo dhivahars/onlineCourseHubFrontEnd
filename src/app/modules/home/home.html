@@ -1,3 +1,55 @@
+<main>
+  @if(!isLogged()){
+    @switch(role){
+  @case('student'){
+    <header class="top-nav">
+    <div class="logo">WeCourse
+    </div>
+    <nav>
+      <!-- Home Button -->
+<button class="btn primary" (click)="onNavigate('/app-home')" routerLinkActive="active">
+  <span class="material-symbols-outlined">home</span>
+  Home
+</button>
+
+<!-- Profile Button (current page) -->
+<button class="btn primary" (click)="onNavigate('/student-dashboard')">
+  <span class="material-symbols-outlined">person</span>
+  Profile
+</button>
+
+
+      <we-button label="Sign Out" variant="danger" (onClick)="onSignOut()">
+        <span class="material-symbols-outlined">logout</span>
+      </we-button>
+    </nav>
+  </header>
+  }
+  @case('mentor'){
+    <header class="top-nav">
+    <div class="logo">WeCourse
+    </div>
+    <nav>
+      <!-- Home Button -->
+<button class="btn primary" (click)="onNavigate('/app-home')" routerLinkActive="active">
+  <span class="material-symbols-outlined">home</span>
+  Home
+</button>
+
+<!-- Profile Button (current page) -->
+<button class="btn primary" (click)="onNavigate('/mentor-dashboard')">
+  <span class="material-symbols-outlined">person</span>
+  Profile
+</button>
+
+
+      <we-button label="Sign Out" variant="danger" (onClick)="onSignOut()">
+        <span class="material-symbols-outlined">logout</span>
+      </we-button>
+    </nav>
+  </header>
+  }
+}}
 <div class="home-container">
   <div class="content">
     <h1 style="color: rgb(0, 86, 210)">WeCourse</h1>

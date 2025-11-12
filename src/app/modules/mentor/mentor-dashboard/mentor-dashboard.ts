@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Button } from '../../../shared/button/button';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
@@ -51,6 +52,11 @@ export class mentorDashboard {
   onSignOut(): void {
     localStorage.clear();
     this.auth.clearUserCache();
+    this.auth.clearUserCache();
     this.router.navigate(['/app-login']);
+  }
+ 
+  onNavigate(path: string): void {
+    this.router.navigate([path]);
   }
 }
