@@ -70,14 +70,12 @@ $font-family: 'Source Sans Pro', sans-serif, Arial;
         font-size: 1rem;
       }
 
-      // ✅ Courses & Students Grid
       .card-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 1.5rem;
       }
 
-      // ✅ Individual Course/Student Card
       .card {
         background-color: white;
         border-left: 4px solid $primary-color;
@@ -161,5 +159,96 @@ span.material-symbols-outlined {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 1024px) {
+  .dashboard {
+    .top-nav {
+      padding: 1rem 2rem;
+    }
+    .content {
+      padding: 1.5rem 2rem;
+      .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    .top-nav {
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+    }
+    .content {
+      padding: 1rem 1.5rem;
+      .profile-section,
+      .courses-section,
+      .students-section {
+        padding: 1rem;
+        h1 {
+          font-size: 1.6rem;
+        }
+        h2 {
+          font-size: 1.4rem;
+        }
+        p {
+          font-size: 0.9rem;
+        }
+        .card-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 0.8rem;
+        }
+        .card {
+          padding: 1rem;
+          h4 {
+            font-size: 1.1rem;
+          }
+          p {
+            font-size: 0.85rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    .top-nav {
+      padding: 0.8rem 1rem;
+    }
+    .content {
+      padding: 0.8rem 1rem;
+      .profile-section,
+      .courses-section,
+      .students-section {
+        padding: 0.8rem;
+        h1 {
+          font-size: 1.4rem;
+        }
+        h2 {
+          font-size: 1.2rem;
+        }
+        .card-grid {
+          grid-template-columns: 1fr;
+          gap: 0.5rem;
+        }
+        .card {
+          padding: 0.8rem;
+          h4 {
+            font-size: 1rem;
+          }
+          p {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
   }
 }

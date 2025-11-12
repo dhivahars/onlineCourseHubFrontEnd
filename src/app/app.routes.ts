@@ -5,7 +5,9 @@ import { mentorDashboard } from './modules/mentor/mentor-dashboard/mentor-dashbo
 import { StudentDashBoard } from './modules/student/student-dash-board/student-dash-board';
 import { Register } from './modules/auth/register/register';
 import { MyCourses } from './modules/student/my-courses/my-courses';
-import { Profile } from './modules/mentor/profile/profile';
+import { Profile } from './modules/mentor/mentor-dashboard/profile/profile';
+import { MyCourse } from './modules/mentor/mentor-dashboard/my-course/my-course';
+import { MyStudents } from './modules/mentor/mentor-dashboard/my-students/my-students';
 
 export const routes: Routes = [{
     path: '',
@@ -26,7 +28,13 @@ export const routes: Routes = [{
   },
   {
     path:'mentor-dashboard',
-    component:mentorDashboard
+    component:mentorDashboard,
+    children:[
+      {path:'',redirectTo:'profile',pathMatch:'full'},
+      {path:'profile',component:Profile},
+      {path:'mycourse',component:MyCourse},
+      {path:'mystudent',component:MyStudents}
+    ]
   },
 {
     path:'app-register',
